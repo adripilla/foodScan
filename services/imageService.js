@@ -2,6 +2,7 @@ const tf = require("@tensorflow/tfjs");
 const mobilenet = require("@tensorflow-models/mobilenet");
 const fs = require("fs");
 const { createCanvas, loadImage } = require("canvas");
+const path = require("path");
 
 // Variable global para el modelo MobileNet
 let model;
@@ -19,6 +20,9 @@ const loadModel = async () => {
 // Función para analizar imagen
 const analyzeImage = async (imagePath) => {
   try {
+
+    
+
     if (!model) {
       console.error("❌ Error: El modelo MobileNet aún no está cargado.");
       return "Model not loaded";

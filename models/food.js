@@ -1,25 +1,39 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Food extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // Define aquí las asociaciones, si las hay
     }
   }
+
   Food.init({
-    name: DataTypes.STRING,
-    calories: DataTypes.INTEGER,
-    category: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    calories: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Food',
+    tableName: 'foods',       // Nombre exacto de la tabla en la BD
+    freezeTableName: true,     // Evita que Sequelize pluralice o modifique el nombre
+    timestamps: false          // Ajusta a true si tienes columnas createdAt y updatedAt en la tabla
   });
+
   return Food;
 };
