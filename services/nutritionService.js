@@ -80,6 +80,9 @@ const getNutritionInfoFatSecret = async (foodName) => {
     const foodList = searchResponse?.data?.foods?.food || [];
     const firstFoodId = Array.isArray(foodList) ? foodList[0]?.food_id : foodList?.food_id;
 
+    console.log("foodList", foodList);
+    
+
     if (!firstFoodId) {
       return { error: "No food found for the given name" };
     }

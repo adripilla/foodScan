@@ -1,3 +1,4 @@
+const { isExistingFood } = require("../services/food");
 const { analyzeImage } = require("../services/imageService");
 const { getNutritionInfoFatSecret } = require("../services/nutritionService");
 const fs = require("fs");
@@ -27,6 +28,19 @@ exports.predictNutritionController = async (req, res) => {
     return res.status(500).json({ error: "Error analyzing image" });
   }
 
-  const nutritionInfo = await getNutritionInfoFatSecret(predictedClass);
-  res.json({ predicted_class: predictedClass, nutrition_info: nutritionInfo });
+  console.log("Predicted class:", predictedClass);
+  
+  const exist = await isExistingFood(predictedClass);
+
+    if(exist) {
+    console.log("Ya existe en bd");
+      
+        return res.json({message : "ya existe en bd"});// status(400).json({ error: "Food already exists" }); 
+    }
+    else{
+    console.log("no existe en bd");
+    
+    const nutritionInfo = await getNutritionInfoFatSecret(predictedClass);
+    return res.json({ predicted_class: predictedClass, nutrition_info: nutritionInfo });
+    }
 };
