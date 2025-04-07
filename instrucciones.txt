@@ -1,0 +1,71 @@
+A continuación se explica cada comando del texto:
+
+### Comandos de Git
+
+- **git checkout rama**  
+  Cambia la rama activa a la rama llamada “rama”. Es útil para moverse entre diferentes líneas de desarrollo en el repositorio.
+
+- **git branch**  
+  Lista todas las ramas locales del repositorio. Además, resalta con un asterisco (*) la rama en la que te encuentras actualmente.
+
+- **git pull**  
+  Actualiza la rama actual descargando los cambios del repositorio remoto y fusionándolos en la rama local. Es una combinación de `git fetch` y `git merge`.
+
+- **git merge**  
+  Fusiona los cambios de otra rama (o de una fuente específica) en la rama actual. Se utiliza para integrar cambios desarrollados en paralelo.
+
+- **git add .**  
+  Añade todos los cambios realizados (nuevos archivos, modificaciones o eliminaciones) en el directorio actual al área de preparación (staging area) para el próximo commit.
+
+- **git commit -m "mensaje"**  
+  Registra los cambios preparados en el repositorio local con un mensaje descriptivo entre comillas (en este caso, "mensaje") que explica lo que se ha modificado.
+
+- **git push**  
+  Envía los commits locales al repositorio remoto, haciendo que los cambios sean accesibles para otros colaboradores.
+
+### Comandos de Sequelize (usando npx)
+
+- **npx sequelize-cli model:generate --name Food --attributes name:string,calories:integer,category:string**  
+  Utiliza el CLI de Sequelize para generar un nuevo modelo llamado “Food” junto con un archivo de migración. Se definen tres atributos para el modelo:  
+  - **name** de tipo *string*  
+  - **calories** de tipo *integer*  
+  - **category** de tipo *string*
+
+- **npx sequelize-cli migration:generate --name nombre-de-la-migracion**  
+  Crea un archivo de migración con el nombre especificado ("nombre-de-la-migracion"). Las migraciones permiten llevar un control de los cambios en la estructura de la base de datos.
+
+- **npx sequelize-cli db:migrate:undo:all**  
+  Revierte todas las migraciones aplicadas, dejando la base de datos en un estado anterior. Es útil para deshacer cambios en el esquema de la base de datos.
+
+- **npx sequelize-cli db:migrate:all**  
+  Aplica todas las migraciones pendientes a la base de datos, actualizando su estructura según lo definido en los archivos de migración.
+
+### Subir y Descargar Cambios en Git
+
+#### Subir cambios
+
+1. **git branch**  
+   Verifica en qué rama estás trabajando, asegurándote de que es la correcta para subir los cambios.
+
+2. **git add .**  
+   Prepara todos los cambios realizados para ser incluidos en el siguiente commit.
+
+3. **git commit -m "mensaje"**  
+   Crea un commit que guarda de forma local los cambios preparados, incluyendo un mensaje descriptivo.
+
+4. **git push**  
+   Envía los commits locales al repositorio remoto para que los demás puedan verlos.
+
+#### Descargar cambios
+
+1. **git checkout master**  
+   Cambia a la rama principal, denominada “master”, para obtener los últimos cambios oficiales.
+
+2. **git pull**  
+   Descarga y fusiona los cambios recientes del repositorio remoto en la rama “master”.
+
+3. **git checkout ricardo**  
+   Cambia a la rama “ricardo” (u otra rama de trabajo en la que se desee integrar los cambios).
+
+4. **git merge master**  
+   Fusiona los cambios de la rama “master” en la rama “ricardo”, integrando las actualizaciones que se hayan realizado en la rama principal.
